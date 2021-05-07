@@ -21,6 +21,7 @@ public class MemoriaCache {
     public static class Bloco {
         public int valorArmazenado;
         public int blocoHit;
+        public int blocoMiss;
         public int id;
     }
 
