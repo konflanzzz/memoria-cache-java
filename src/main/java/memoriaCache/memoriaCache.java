@@ -2,14 +2,26 @@ package memoriaCache;
 
 import java.util.ArrayList;
 
-public class memoriaCache {
-    public Integer tamanho;
-    public Bloco bloco;
+public class MemoriaCache {
+    public int tamanho;
+    public ArrayList<Bloco> listaBlocos;
+    public int cacheHit;
+    //public Bloco bloco;
+
+    public ArrayList<Bloco> inicializarListaBlocos(Integer tamanho){
+        this.listaBlocos = new ArrayList<>();
+        for (int a = 0; a < tamanho; a++) {
+            Bloco blocoMemoria = new Bloco();
+            blocoMemoria.id = a;
+            listaBlocos.add(blocoMemoria);
+        }
+        return listaBlocos;
+    }
 
     public static class Bloco {
-        public Integer valorArmazenado;
-        public Integer cacheHit;
-        public Integer id;
+        public int valorArmazenado;
+        public int blocoHit;
+        public int id;
     }
 
 
