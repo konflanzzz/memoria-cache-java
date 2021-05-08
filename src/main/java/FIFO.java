@@ -9,7 +9,6 @@ public class FIFO {
       // Definicao de variaveis e objetos
       MemoriaCache novaMemoriaCache = new MemoriaCache();
       int valorEntradaAtual, valorRemovido, quantidadeSubstituicao = 0, blocoMemoriaAtual = 0;
-      ArrayList<Integer> listaFIFO = new ArrayList<>();
       boolean espacoVazio = false;
 
       // Faz a leitura do tamanho total da memoria
@@ -17,6 +16,9 @@ public class FIFO {
       System.out.println("Digite o tamanho da memoria Cache: ");
       novaMemoriaCache.tamanho = Integer.valueOf(leituraTamanhoMemoria.nextLine());
 
+      // Valores para teste
+      //novaMemoriaCache.tamanho = 4;
+      
       // Cria os blocos da memoria conforme a quantidade desejada
       MemoriaCache.Bloco [] blocoMemoria = new MemoriaCache.Bloco[novaMemoriaCache.tamanho];
       for (int a = 0; a < novaMemoriaCache.tamanho; a++) {
@@ -27,6 +29,9 @@ public class FIFO {
       Scanner quantidadeValoresEntrada = new Scanner(System.in);
       System.out.println("Digite quantos valores serão inseridos na memoria cache: ");
       int quantidadeEntrada = Integer.valueOf(quantidadeValoresEntrada.nextLine());
+
+      // Valores para testes
+      //int[] arrayValoresEntrada = {1,3,4,7,6,4,3,6,8,3,4,1,8,3,4,9,8}; 
 
       // Cria um array com os dados que serão inseridos na memoria
       Scanner valorEntrada = new Scanner(System.in);
@@ -40,14 +45,14 @@ public class FIFO {
       for (int c=0; c < arrayValoresEntrada.length; c++) {
          valorEntradaAtual = arrayValoresEntrada[c];
 
-         // Verifica se o valorEntradaAtual já está na memória
+         // Verifica se o valor ja esta na memória
          for (int d=0; d < novaMemoriaCache.tamanho; d++) {
             if (valorEntradaAtual == blocoMemoria[d].valorArmazenado) {
                novaMemoriaCache.cacheHit++;
             }
          }
 
-         // Ve se a memoria esta vazia
+         // Verifica se a memoria esta vazia
          if (novaMemoriaCache.cacheHit == 0) {
             for ( int e = 0; e < novaMemoriaCache.tamanho; e++) {
                if ( blocoMemoria[e].valorArmazenado == 0) {
@@ -57,7 +62,7 @@ public class FIFO {
                }
             }
 
-            // Se espaço de memória está vazio, armazena valor
+            // Se espaço de memoria esta vazio, armazena o valor
             if ( espacoVazio == true) {
                blocoMemoria[blocoMemoriaAtual].valorArmazenado = valorEntradaAtual;
                listaFIFO.add(arrayValoresEntrada[c]);
@@ -69,7 +74,7 @@ public class FIFO {
                valorRemovido = listaFIFO.get(0);
                listaFIFO.remove(0);
 
-               // Substitui valor quando a memoria estiver cheia
+               // Substitui o valor quando a memoria estiver cheia
                for (int f = 0; f < novaMemoriaCache.tamanho; f++) {
                   if (valorRemovido == blocoMemoria[f].valorArmazenado) {
                      blocoMemoria[f].valorArmazenado = valorEntradaAtual;
@@ -79,19 +84,19 @@ public class FIFO {
             }
          }
 
-         // Reset nas variaveis
+         // FAz o reset das variaveis auxiliares
          espacoVazio = false;
          novaMemoriaCache.cacheHit = 0;
       }
 
-      // Memória cache no final da execução do algoritmo FIFO
+      // Apresenta a memoria cache no final da execucao do algoritmo FIFO
       System.out.println("Memória cache: ");
       for (int f = 0; f < novaMemoriaCache.tamanho; f++)
       {
          System.out.println(blocoMemoria[f].valorArmazenado);
       }
 
-      //Fila no final da execução do algoritmo FIFO
+      // Apresenta a fila no final da execucao do algoritmo FIFO
       System.out.println("Fila FIFO: ");
       int g = 0;
       for (int elemento: listaFIFO) {
@@ -99,7 +104,7 @@ public class FIFO {
          g++;
       }
 
-      //Número de substituições realizadas
+      // Apresenta o numero de substituicoes realizadas na memoria CACHE
       System.out.println("Quantidade de substituições: " + quantidadeSubstituicao);
    }
 }

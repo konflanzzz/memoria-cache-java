@@ -142,13 +142,13 @@ public class LRU {
             novaMemoriaCache.cacheHit = 0;
         }
 
-        // Apresenta a memoria cache no final da execução do algoritmo FIFO
+        // Apresenta a memoria cache no final da execução do algoritmo LRU
         System.out.println("Memória cache: ");
         for (int f = 0; f < novaMemoriaCache.tamanho; f++) {
             System.out.println(blocoMemoria[f].valorArmazenado);
         }
 
-        // Apresenta o numero de substituições realizadas
+        // Apresenta o numero de substituições realizadas na memoria CACHE
         System.out.println("Quantidade de substituições: " + quantidadeSubstituicao);
     }
 }
