@@ -22,13 +22,18 @@ public class ALEATORIO {
         for (int a = 0; a < novaMemoriaCache.tamanho; a++) {
             blocoMemoria[a] = new MemoriaCache.Bloco();
         }
-      
-        // Le a quantidade de dados que serao inseridos na memoria cache
+
+        // Atribui uma identificação aos blocos de memoria gerados
+        for (int a = 0; a < novaMemoriaCache.tamanho; a++) {
+            blocoMemoria[a].id = a;
+        }
+
+        // Le a quantidade de dados que serão inseridos na memoria cache
         Scanner quantidadeValoresEntrada = new Scanner(System.in);
         System.out.println("Digite quantos valores serão inseridos na memoria cache: ");
         int quantidadeEntrada = Integer.valueOf(quantidadeValoresEntrada.nextLine());
 
-        // Cria um array com os dados que serao inseridos na memoria
+        // Cria um array com os dados que serão inseridos na memoria
         Scanner valorEntrada = new Scanner(System.in);
         int[] arrayValoresEntrada = new int[quantidadeEntrada];
         for (int b=0; b<quantidadeEntrada; b++) {
@@ -40,14 +45,14 @@ public class ALEATORIO {
         for (int c=0; c < arrayValoresEntrada.length; c++) {
             valorEntradaAtual = arrayValoresEntrada[c];
 
-            // Verifica se o valor ja esta na memoria cache
+            // Verifica se o valorEntradaAtual já está na memória
             for (int d=0; d < novaMemoriaCache.tamanho; d++) {
                 if (valorEntradaAtual == blocoMemoria[d].valorArmazenado) {
                     novaMemoriaCache.cacheHit++;
                 }
             }
 
-            // Verifica se a memoria esta vazia
+            // Ve se a memoria esta vazia
             if (novaMemoriaCache.cacheHit == 0) {
                 for ( int e = 0; e < novaMemoriaCache.tamanho; e++) {
                     if ( blocoMemoria[e].valorArmazenado == 0) {
@@ -57,7 +62,7 @@ public class ALEATORIO {
                     }
                 }
 
-                // Se espaco de memoria esta vazio, armazena valor
+                // Se espaço de memória está vazio, armazena valor
                 if ( espacoVazio == true) {
                     blocoMemoria[blocoMemoriaAtual].valorArmazenado = valorEntradaAtual;
                 }
@@ -70,25 +75,25 @@ public class ALEATORIO {
 
                     blocoMemoria[numeroAleatorio].valorArmazenado = valorEntradaAtual;
 
-                    System.out.println("Posicao Aleatoria: " + numeroAleatorio + " recebeu o valor: " + blocoMemoria[numeroAleatorio].valorArmazenado);
+                    System.out.println("Posição Aleatória: " + numeroAleatorio + " recebeu o valor: " + blocoMemoria[numeroAleatorio].valorArmazenado);
                     quantidadeSubstituicao++;
 
                 }
             }
 
-            // Faz o reset das variaveis auxiliares
+            // Reset nas variaveis
             espacoVazio = false;
             novaMemoriaCache.cacheHit = 0;
         }
 
-        // Apresenta a memoria cache no final da execucao do algoritmo ALEATORIO
-        System.out.println("Memoria cache: ");
+        // Representacao da memoria cache no final da execução do algoritmo FIFO
+        System.out.println("Memória cache: ");
         for (int f = 0; f < novaMemoriaCache.tamanho; f++)
         {
             System.out.println(blocoMemoria[f].valorArmazenado);
         }
 
         // Apresenta a quantidade de substituicoes feitas
-        System.out.println("Quantidade de substituicoes realizadas: " + quantidadeSubstituicao);
+        System.out.println("Quantidade de substituições: " + quantidadeSubstituicao);
     }
 }
