@@ -79,16 +79,18 @@ public class LRU {
                             if (valorEntradaAtual == (blocoMemoria[p].valorArmazenado)) {
                                 novaMemoriaCache.cacheHit++;
                                 for (int h = 0; h < novaMemoriaCache.tamanho; h++) {
-                                    if (blocoMemoria[h].id == g) {
+                                    if (blocoMemoria[h].id == p) {
                                         blocoMemoria[h].blocoMiss = 0;
                                     } else {
-                                        blocoMemoria[g].blocoMiss++;
+                                        blocoMemoria[h].blocoMiss++;
                                     }
                                 }
                                 alteracaoFeita = true;
                                 //já achou o numero na memoria
                             }
+
                             if ( alteracaoFeita == true) {break;};
+
                         }
                         if (alteracaoFeita == false) { // se ele nao estiver na memoria
                             // vai substituir por quem tem o maior Miss
@@ -109,8 +111,10 @@ public class LRU {
                                             blocoMemoria[l].blocoMiss++;
                                         }
                                     }
+                                    alteracaoFeita = true;
                                 }
-                                break;
+                                if ( alteracaoFeita == true) {break;}
+
                             }
                             break;
                         }
