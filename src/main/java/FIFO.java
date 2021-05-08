@@ -9,6 +9,7 @@ public class FIFO {
       // Definicao de variaveis e objetos
       MemoriaCache novaMemoriaCache = new MemoriaCache();
       int valorEntradaAtual, valorRemovido, quantidadeSubstituicao = 0, blocoMemoriaAtual = 0;
+      ArrayList<Integer> listaFIFO = new ArrayList<>();
       boolean espacoVazio = false;
 
       // Faz a leitura do tamanho total da memoria
