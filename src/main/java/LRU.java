@@ -10,6 +10,7 @@ public class LRU {
         MemoriaCache novaMemoriaCache = new MemoriaCache();
         int valorEntradaAtual, valorRemovido, quantidadeSubstituicao = 0, blocoMemoriaAtual = 0, maiorMiss = 0;
         boolean espacoVazio = false;
+        boolean alteracaoFeita = false;
 
         // Faz a leitura do tamanho total da memoria
 //        Scanner leituraTamanhoMemoria = new Scanner(System.in);
@@ -41,7 +42,7 @@ public class LRU {
 //            System.out.println("Digite o valor a serem inseridos na memoria cache: ");
 //            arrayValoresEntrada[c] = Integer.valueOf(valorEntrada.nextLine());
 //        }
-        int[] arrayValoresEntrada = {1,3,4,7,6,4,3,6,8,3,4,1,8,3,4,9,8};
+        int[] arrayValoresEntrada = {1, 3, 4, 7, 6, 4, 3, 6, 8, 3, 4, 1, 8, 3, 4, 9, 8};
 
         // Inicia o acesso a memoria
         for (int d = 0; d < arrayValoresEntrada.length; d++) {
@@ -74,18 +75,22 @@ public class LRU {
                 else {
                     // Verifica se o numero ja esta na memoria
                     for (int g = 0; g < novaMemoriaCache.tamanho; g++) {
-                        // loop
-                        if (valorEntradaAtual == blocoMemoria[g].valorArmazenado) {
-                            novaMemoriaCache.cacheHit++;
-                            for (int h = 0; h < novaMemoriaCache.tamanho; h++) {
-                                if (blocoMemoria[h].id == g) {
-                                    blocoMemoria[h].blocoMiss = 0;
-                                } else {
-                                    blocoMemoria[g].blocoMiss++;
+                        for (int p = 0; p < novaMemoriaCache.tamanho; p++) {
+                            if (valorEntradaAtual == (blocoMemoria[p].valorArmazenado)) {
+                                novaMemoriaCache.cacheHit++;
+                                for (int h = 0; h < novaMemoriaCache.tamanho; h++) {
+                                    if (blocoMemoria[h].id == g) {
+                                        blocoMemoria[h].blocoMiss = 0;
+                                    } else {
+                                        blocoMemoria[g].blocoMiss++;
+                                    }
                                 }
-                            }break; //já achou o numero na memoria
+                                alteracaoFeita = true;
+                                //já achou o numero na memoria
+                            }
+                            if ( alteracaoFeita == true) {break;};
                         }
-                        else { // se ele nao estiver na memoria
+                        if (alteracaoFeita == false) { // se ele nao estiver na memoria
                             // vai substituir por quem tem o maior Miss
                             for (int i = 0; i < novaMemoriaCache.tamanho; i++) {
                                 //descobre quem tem o maior Miss
@@ -104,13 +109,16 @@ public class LRU {
                                             blocoMemoria[l].blocoMiss++;
                                         }
                                     }
-                                }break;
+                                }
+                                break;
                             }
-                        }break;
+                            break;
+                        }
+                        else{break;}
                     }
-                    maiorMiss = 0;
                 }
             }
+            alteracaoFeita = false;
             espacoVazio = false;
             novaMemoriaCache.cacheHit = 0;
         }
