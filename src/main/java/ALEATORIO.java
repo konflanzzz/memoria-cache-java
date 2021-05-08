@@ -13,9 +13,11 @@ public class ALEATORIO {
         boolean espacoVazio = false;
 
         // Faz a leitura do tamanho total da memoria
-        Scanner leituraTamanhoMemoria = new Scanner(System.in);
-        System.out.println("Digite o tamanho da memoria Cache: ");
-        novaMemoriaCache.tamanho = Integer.valueOf(leituraTamanhoMemoria.nextLine());
+//        Scanner leituraTamanhoMemoria = new Scanner(System.in);
+//        System.out.println("Digite o tamanho da memoria Cache: ");
+//        novaMemoriaCache.tamanho = Integer.valueOf(leituraTamanhoMemoria.nextLine());
+        // Valores para teste
+        novaMemoriaCache.tamanho = 4;
 
         // Cria os blocos da memoria conforme a quantidade desejada
         MemoriaCache.Bloco [] blocoMemoria = new MemoriaCache.Bloco[novaMemoriaCache.tamanho];
@@ -24,17 +26,21 @@ public class ALEATORIO {
         }
       
         // Le a quantidade de dados que serao inseridos na memoria cache
-        Scanner quantidadeValoresEntrada = new Scanner(System.in);
-        System.out.println("Digite quantos valores serão inseridos na memoria cache: ");
-        int quantidadeEntrada = Integer.valueOf(quantidadeValoresEntrada.nextLine());
+//        Scanner quantidadeValoresEntrada = new Scanner(System.in);
+//        System.out.println("Digite quantos valores serão inseridos na memoria cache: ");
+//        int quantidadeEntrada = Integer.valueOf(quantidadeValoresEntrada.nextLine());
+        // Valores para teste
+        int quantidadeEntrada = 17;
 
         // Cria um array com os dados que serao inseridos na memoria
-        Scanner valorEntrada = new Scanner(System.in);
-        int[] arrayValoresEntrada = new int[quantidadeEntrada];
-        for (int b=0; b<quantidadeEntrada; b++) {
-            System.out.println("Digite o valor a serem inseridos na memoria cache: ");
-            arrayValoresEntrada[b] = Integer.valueOf(valorEntrada.nextLine());
-        }
+//        Scanner valorEntrada = new Scanner(System.in);
+//        int[] arrayValoresEntrada = new int[quantidadeEntrada];
+//        for (int b=0; b<quantidadeEntrada; b++) {
+//            System.out.println("Digite o valor a serem inseridos na memoria cache: ");
+//            arrayValoresEntrada[b] = Integer.valueOf(valorEntrada.nextLine());
+//        }
+        // Valores para testes
+        int[] arrayValoresEntrada = {1,3,4,7,6,4,3,6,8,3,4,1,8,3,4,9,8};
 
         // Inicia o acesso a memoria
         for (int c=0; c < arrayValoresEntrada.length; c++) {
