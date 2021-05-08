@@ -23,12 +23,12 @@ public class ALEATORIO {
             blocoMemoria[a] = new MemoriaCache.Bloco();
         }
 
-        //Atribui uma identificação aos blocos de memoria gerados
+        // Atribui uma identificação aos blocos de memoria gerados
         for (int a = 0; a < novaMemoriaCache.tamanho; a++) {
             blocoMemoria[a].id = a;
         }
 
-        //Le a quantidade de dados que serão inseridos na memoria cache
+        // Le a quantidade de dados que serão inseridos na memoria cache
         Scanner quantidadeValoresEntrada = new Scanner(System.in);
         System.out.println("Digite quantos valores serão inseridos na memoria cache: ");
         int quantidadeEntrada = Integer.valueOf(quantidadeValoresEntrada.nextLine());
@@ -62,12 +62,14 @@ public class ALEATORIO {
                     }
                 }
 
-                //Se espaço de memória está vazio, armazena valor
+                // Se espaço de memória está vazio, armazena valor
                 if ( espacoVazio == true) {
                     blocoMemoria[blocoMemoriaAtual].valorArmazenado = valorEntradaAtual;
                 }
+
                 else {
-                    // Adiciona os valores
+
+                    // Adiciona os valores de forma aleatoria
                     Random aleatorio = new Random();
                     int numeroAleatorio = aleatorio.nextInt(novaMemoriaCache.tamanho);
 
@@ -79,18 +81,19 @@ public class ALEATORIO {
                 }
             }
 
+            // Reset nas variaveis
             espacoVazio = false;
             novaMemoriaCache.cacheHit = 0;
         }
 
-        //Memória cache no final da execução do algoritmo FIFO
+        // Representacao da memoria cache no final da execução do algoritmo FIFO
         System.out.println("Memória cache: ");
         for (int f = 0; f < novaMemoriaCache.tamanho; f++)
         {
             System.out.println(blocoMemoria[f].valorArmazenado);
         }
 
-        //Número de substituições realizadas
+        // Apresenta a quantidade de substituicoes feitas
         System.out.println("Quantidade de substituições: " + quantidadeSubstituicao);
     }
 }

@@ -8,7 +8,7 @@ public class FIFO {
 
       // Definicao de variaveis e objetos
       MemoriaCache novaMemoriaCache = new MemoriaCache();
-      int valorEntradaAtual, valorRemovido, quantidadeSubstituicao=0, blocoMemoriaAtual=0;
+      int valorEntradaAtual, valorRemovido, quantidadeSubstituicao = 0, blocoMemoriaAtual = 0;
       ArrayList<Integer> listaFIFO = new ArrayList<>();
       boolean espacoVazio = false;
 
@@ -21,11 +21,6 @@ public class FIFO {
       MemoriaCache.Bloco [] blocoMemoria = new MemoriaCache.Bloco[novaMemoriaCache.tamanho];
       for (int a = 0; a < novaMemoriaCache.tamanho; a++) {
          blocoMemoria[a] = new MemoriaCache.Bloco();
-      }
-
-      //Atribui uma identificação aos blocos de memoria gerados
-      for (int a = 0; a < novaMemoriaCache.tamanho; a++) {
-         blocoMemoria[a].id = a;
       }
 
       //Le a quantidade de dados que serão inseridos na memoria cache
@@ -62,7 +57,7 @@ public class FIFO {
                }
             }
 
-            //Se espaço de memória está vazio, armazena valor
+            // Se espaço de memória está vazio, armazena valor
             if ( espacoVazio == true) {
                blocoMemoria[blocoMemoriaAtual].valorArmazenado = valorEntradaAtual;
                listaFIFO.add(arrayValoresEntrada[c]);
@@ -84,11 +79,12 @@ public class FIFO {
             }
          }
 
+         // Reset nas variaveis
          espacoVazio = false;
          novaMemoriaCache.cacheHit = 0;
       }
 
-      //Memória cache no final da execução do algoritmo FIFO
+      // Memória cache no final da execução do algoritmo FIFO
       System.out.println("Memória cache: ");
       for (int f = 0; f < novaMemoriaCache.tamanho; f++)
       {
