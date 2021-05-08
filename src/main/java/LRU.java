@@ -42,7 +42,7 @@ public class LRU {
 //            System.out.println("Digite o valor a serem inseridos na memoria cache: ");
 //            arrayValoresEntrada[c] = Integer.valueOf(valorEntrada.nextLine());
 //        }
-        int[] arrayValoresEntrada = {1, 3, 4, 7, 6, 4, 3, 6, 8, 3, 4, 1, 8, 3, 4, 9, 8};
+        int[] arrayValoresEntrada = {1,3,4,7,6,4,3,6,8,3,4,1,8,3,4,9,8};
 
         // Inicia o acesso a memoria
         for (int d = 0; d < arrayValoresEntrada.length; d++) {
@@ -61,6 +61,7 @@ public class LRU {
                 //Se espaço de memória está vazio, armazena valor
                 if (espacoVazio == true && blocoMemoria[d].id > 0) {
                     blocoMemoria[blocoMemoriaAtual].valorArmazenado = valorEntradaAtual;
+                    quantidadeSubstituicao++;
                     for (int f = 0; f < blocoMemoriaAtual; f++) {
                         blocoMemoria[f].blocoMiss++;
                     }
@@ -112,6 +113,7 @@ public class LRU {
                                         }
                                     }
                                     alteracaoFeita = true;
+                                    quantidadeSubstituicao++;
                                 }
                                 if ( alteracaoFeita == true) {break;}
 
@@ -122,6 +124,7 @@ public class LRU {
                     }
                 }
             }
+            maiorMiss = 0;
             alteracaoFeita = false;
             espacoVazio = false;
             novaMemoriaCache.cacheHit = 0;
