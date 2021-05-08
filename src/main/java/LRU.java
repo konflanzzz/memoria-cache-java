@@ -13,10 +13,11 @@ public class LRU {
         boolean alteracaoFeita = false;
 
         // Faz a leitura do tamanho total da memoria
-//        Scanner leituraTamanhoMemoria = new Scanner(System.in);
-//        System.out.println("Digite o tamanho da memoria Cache: ");
-//        novaMemoriaCache.tamanho = Integer.valueOf(leituraTamanhoMemoria.nextLine());
-        novaMemoriaCache.tamanho = 4;
+        Scanner leituraTamanhoMemoria = new Scanner(System.in);
+        System.out.println("Digite o tamanho da memoria Cache: ");
+        novaMemoriaCache.tamanho = Integer.valueOf(leituraTamanhoMemoria.nextLine());
+        // Valores para teste
+        //novaMemoriaCache.tamanho = 4;
 
         // Cria os blocos da memoria conforme a quantidade desejada
         MemoriaCache.Bloco[] blocoMemoria = new MemoriaCache.Bloco[novaMemoriaCache.tamanho];
@@ -24,31 +25,35 @@ public class LRU {
             blocoMemoria[a] = new MemoriaCache.Bloco();
         }
 
-        //Atribui uma identificação aos blocos de memoria gerados
+        // Atribui uma identificacao aos blocos de memoria gerados
         for (int b = 0; b < novaMemoriaCache.tamanho; b++) {
             blocoMemoria[b].id = b;
         }
 
         //Le a quantidade de dados que serão inseridos na memoria cache
-//        Scanner quantidadeValoresEntrada = new Scanner(System.in);
-//        System.out.println("Digite quantos valores serão inseridos na memoria cache: ");
-//        int quantidadeEntrada = Integer.valueOf(quantidadeValoresEntrada.nextLine());
-        int quantidadeEntrada = 17;
+        Scanner quantidadeValoresEntrada = new Scanner(System.in);
+        System.out.println("Digite quantos valores serão inseridos na memoria cache: ");
+        int quantidadeEntrada = Integer.valueOf(quantidadeValoresEntrada.nextLine());
+        
+        // Valores para teste
+        //int quantidadeEntrada = 17;
 
         // Cria um array com os dados que serão inseridos na memoria
-//        Scanner valorEntrada = new Scanner(System.in);
-//        int[] arrayValoresEntrada = new int[quantidadeEntrada];
-//        for (int c = 0; c < quantidadeEntrada; c++) {
-//            System.out.println("Digite o valor a serem inseridos na memoria cache: ");
-//            arrayValoresEntrada[c] = Integer.valueOf(valorEntrada.nextLine());
-//        }
-        int[] arrayValoresEntrada = {1,3,4,7,6,4,3,6,8,3,4,1,8,3,4,9,8};
+        Scanner valorEntrada = new Scanner(System.in);
+        int[] arrayValoresEntrada = new int[quantidadeEntrada];
+        for (int c = 0; c < quantidadeEntrada; c++) {
+            System.out.println("Digite o valor a serem inseridos na memoria cache: ");
+            arrayValoresEntrada[c] = Integer.valueOf(valorEntrada.nextLine());
+        }
+        
+        // Valores para testes
+        //int[] arrayValoresEntrada = {1,3,4,7,6,4,3,6,8,3,4,1,8,3,4,9,8}; 
 
         // Inicia o acesso a memoria
         for (int d = 0; d < arrayValoresEntrada.length; d++) {
             valorEntradaAtual = arrayValoresEntrada[d];
 
-            // Ve se a memoria esta vazia
+            // Verifica se a memoria esta vazia
             if (novaMemoriaCache.cacheHit == 0) {
                 for (int e = 0; e < novaMemoriaCache.tamanho; e++) {
                     if (blocoMemoria[e].valorArmazenado == 0) {
@@ -58,7 +63,7 @@ public class LRU {
                     }
                 }
 
-                //Se espaço de memória está vazio, armazena valor
+                // Se o espaco de memmria esta vazio, armazena valor
                 if (espacoVazio == true && blocoMemoria[d].id > 0) {
                     blocoMemoria[blocoMemoriaAtual].valorArmazenado = valorEntradaAtual;
                     quantidadeSubstituicao++;
@@ -67,13 +72,15 @@ public class LRU {
                     }
                 }
 
-                // espacos vazios iniciais
+                // Preenche sspacos vazios iniciais
+                // Somente para o primeiro bloco da memoria cache
                 if (espacoVazio == true) {
                     blocoMemoria[blocoMemoriaAtual].valorArmazenado = valorEntradaAtual;
                 }
 
-                // se memoria estiver cheia
+                // Somente se memoria estiver cheia
                 else {
+
                     // Verifica se o numero ja esta na memoria
                     for (int g = 0; g < novaMemoriaCache.tamanho; g++) {
                         for (int p = 0; p < novaMemoriaCache.tamanho; p++) {
@@ -86,22 +93,25 @@ public class LRU {
                                         blocoMemoria[h].blocoMiss++;
                                     }
                                 }
+                                // Encontrou o valor na memoria
                                 alteracaoFeita = true;
-                                //já achou o numero na memoria
                             }
-
                             if ( alteracaoFeita == true) {break;};
-
                         }
-                        if (alteracaoFeita == false) { // se ele nao estiver na memoria
-                            // vai substituir por quem tem o maior Miss
+
+                        if (alteracaoFeita == false) { 
+                            
+                            // Somente se ele nao estiver na memoria.
+                            // Vai substituir quem tem o maior blocoMiss
                             for (int i = 0; i < novaMemoriaCache.tamanho; i++) {
-                                //descobre quem tem o maior Miss
+
+                                // Descobre quem tem o maior blocoMiss
                                 for (int j = 0; j < novaMemoriaCache.tamanho; j++) {
                                     if (blocoMemoria[j].blocoMiss > maiorMiss) {
                                         maiorMiss = blocoMemoria[j].blocoMiss;
                                     }
                                 }
+
                                 // substitui os valores
                                 if (blocoMemoria[i].blocoMiss == maiorMiss) {
                                     blocoMemoria[i].valorArmazenado = valorEntradaAtual;
@@ -124,19 +134,21 @@ public class LRU {
                     }
                 }
             }
+
+            // Faz o reset das variavies auxiliar
             maiorMiss = 0;
             alteracaoFeita = false;
             espacoVazio = false;
             novaMemoriaCache.cacheHit = 0;
         }
 
-        //Memória cache no final da execução do algoritmo FIFO
+        // Apresenta a memoria cache no final da execução do algoritmo FIFO
         System.out.println("Memória cache: ");
         for (int f = 0; f < novaMemoriaCache.tamanho; f++) {
             System.out.println(blocoMemoria[f].valorArmazenado);
         }
 
-        //Número de substituições realizadas
+        // Apresenta o numero de substituições realizadas
         System.out.println("Quantidade de substituições: " + quantidadeSubstituicao);
     }
 }
