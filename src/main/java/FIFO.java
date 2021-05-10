@@ -1,5 +1,4 @@
 import memoriaCache.MemoriaCache;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -44,6 +43,7 @@ public class FIFO {
 
       // Inicia o acesso a memoria
       for (int c=0; c < arrayValoresEntrada.length; c++) {
+      
          valorEntradaAtual = arrayValoresEntrada[c];
 
          // Verifica se o valor ja esta na memoria

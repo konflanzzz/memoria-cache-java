@@ -17,6 +17,8 @@ public class MemoriaCache {
         return listaBlocos;
     }
 
+
+    // Classe para criar os blocos da memoria
     public static class Bloco {
         public int valorArmazenado;
         public int blocoHit;
